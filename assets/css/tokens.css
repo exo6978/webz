@@ -1,0 +1,144 @@
+/* Overprint: design tokens.
+   Layout: one plaster wall. Prints hang on a strict grid and are lit from wherever
+   the pointer is; captions read like gallery wall labels; heavy condensed type is
+   kept for the hero and the section openers. */
+
+@font-face {
+  font-family: "Archivo";
+  src: url("../fonts/archivo-latin-wdth-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/newsreader-latin-opsz-italic.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+
+  /* ---- colour: daylight ---- */
+  --wall: #e7e9ee; /* plaster */
+  --wall-2: #dcdfe7; /* recessed wall: stage, footer */
+  --panel: #f5f6f9; /* drawer, wall-label cards */
+  --ink: #14162c; /* text */
+  --ink-2: #4a4e66;
+  --ink-3: #6f748b;
+  --line: rgb(20 22 44 / 0.14);
+  --line-strong: rgb(20 22 44 / 0.34);
+  --ink-a: #1aa3ff; /* process blue */
+  --ink-b: #ff4fa8; /* fluoro pink */
+  --accent: #1a33ab; /* what the two make where they overprint */
+  --on-accent: #f7f8fc;
+  --low: #b93a0b; /* nearly sold out */
+  --table: #f1f2f4; /* light table under separations */
+  --shadow: 20 22 48;
+  --blend: multiply; /* ink by day */
+  --pass-1: #00aeef;
+  --pass-2: #ec008c;
+  --pass-3: #fff200;
+  --dim: 0; /* how far unlit frames fall into shadow */
+  --glare: 0.55;
+  --pool: rgb(255 255 255 / 0.55); /* light pool on the wall */
+
+  /* ---- type ---- */
+  --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-text: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --step--2: 0.75rem;
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(2.125rem, 1.5rem + 2.6vw, 3.5rem);
+  --step-4: clamp(2.875rem, 0.9rem + 5vw, 5.5rem);
+
+  /* ---- shape and motion ---- */
+  --radius: 3px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --spring: cubic-bezier(0.3, 1.5, 0.5, 1);
+
+  /* ---- raking light: where the light is relative to each frame, set from script ---- */
+  --lx: -0.3;
+  --ly: -1;
+  --lit: 0.6;
+  --gx: 30%;
+  --tx: 0;
+  --ty: 0;
+}
+
+/* Night: the room lights go off and the pointer becomes the lamp. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --wall: #10121b;
+    --wall-2: #0a0c13;
+    --panel: #191c28;
+    --ink: #eceef6;
+    --ink-2: #aeb3c8;
+    --ink-3: #8088a0;
+    --line: rgb(236 238 246 / 0.14);
+    --line-strong: rgb(236 238 246 / 0.36);
+    --ink-a: #38b2ff;
+    --ink-b: #ff5cb0;
+    --accent: #a5b5ff;
+    --on-accent: #10121f;
+    --low: #ff9d66;
+    --table: #eef0f3;
+    --shadow: 0 0 0;
+    --blend: screen; /* light by night */
+    --pass-1: #ff3b3b;
+    --pass-2: #35ff6b;
+    --pass-3: #3b6bff;
+    --dim: 0.4;
+    --glare: 0.32;
+    --pool: rgb(255 236 200 / 0.16);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --wall: #10121b;
+  --wall-2: #0a0c13;
+  --panel: #191c28;
+  --ink: #eceef6;
+  --ink-2: #aeb3c8;
+  --ink-3: #8088a0;
+  --line: rgb(236 238 246 / 0.14);
+  --line-strong: rgb(236 238 246 / 0.36);
+  --ink-a: #38b2ff;
+  --ink-b: #ff5cb0;
+  --accent: #a5b5ff;
+  --on-accent: #10121f;
+  --low: #ff9d66;
+  --table: #eef0f3;
+  --shadow: 0 0 0;
+  --blend: screen;
+  --pass-1: #ff3b3b;
+  --pass-2: #35ff6b;
+  --pass-3: #3b6bff;
+  --dim: 0.4;
+  --glare: 0.32;
+  --pool: rgb(255 236 200 / 0.16);
+}
